@@ -5,55 +5,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import org.gdsc_android.picky_panda.databinding.FragmentHomeBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class HomeFragment : Fragment(), OnMapReadyCallback {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentHomeBinding? = null
+    //실제로 사용할 수 있는 프로퍼티.
+    //_binding의 null 여부를 확인하고 non-null인 경우에만 해당 바인딩 정보를 반환
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+   //fragment가 최초로 화면에 표시될 때 호출되는 메서드
+    //_binding 변수 초기화 및 해당 fragment의 xml 레이아웃을 인플레이트하여 view 생성 후 반환
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+   ): View? {
+       _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+       return binding.root
+   }
+
+    //fragment의 view가 소멸되는 시점에 호출
+    //이때 _binding을 null로 설정시켜 메모리 누수를 방지한다 fragment의 view가 다시 생성될 때 _binding은 다시 초기화 된다
+    override fun onDestroyView() {
+        super.onDestroyView() //부모 클래스인 Fragment 클래스의 onDestroyViewㄹ르 호출. 소멸 전 필요한 작업 수행.
+        _binding = null
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    //Map이 사용될 준비가 되었을 때 호출되는 메소드
+    override fun onMapReady(p0: GoogleMap?) {
+        TODO("Not yet implemented")
     }
+
+
 }
