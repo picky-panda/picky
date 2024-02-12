@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "645493796017",
+    "project_id": "pickypanda",
+    "storage_bucket": "pickypanda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645493796017:android:abc5ce2eadfd4a54780690",
+        "android_client_info": {
+          "package_name": "org.gdsc_android.picky_panda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645493796017-dmnnsvg07ij8bjp6oro1ivbkuv9vs9l8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.gdsc_android.picky_panda",
+            "certificate_hash": "788e9adf12a857fb2de2998b294ba94d8c8d1b67"
+          }
+        },
+        {
+          "client_id": "645493796017-utka0lckjmauirip7ef33rcapn4p24b3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnOo7XYmBT9ZKsePRjfLk4wPQicDhmuf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645493796017-utka0lckjmauirip7ef33rcapn4p24b3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
