@@ -77,6 +77,7 @@
                 android:src="@drawable/baseline_bookmark_border_24"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="340dp"
+                app:backgroundTint="@color/white"
                 />
 
             <LinearLayout
