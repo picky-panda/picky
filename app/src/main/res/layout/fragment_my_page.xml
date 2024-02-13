@@ -81,53 +81,25 @@
         app:layout_constraintTop_toBottomOf="@+id/profileLayout"
         app:layout_constraintBottom_toTopOf="@+id/evaluateTitleLayout">
 
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="130dp"
+       <include
+           layout="@layout/my_page_buttons"
+           android:layout_height="130dp"
+           android:layout_width="130dp"/>
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="10dp"/>
+        <include
+            layout="@layout/my_page_buttons"
             android:layout_height="130dp"
-            android:background="@drawable/button_shape"
-            android:gravity="bottom|center_horizontal"
-            android:paddingBottom="20dp"
-            android:layout_marginRight="20dp"
-            android:text="1
-            Register"
-            android:textSize="20dp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <Button
-            android:id="@+id/reviewButton"
-            android:layout_width="130dp"
+            android:layout_width="130dp"/>
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="10dp"/>
+        <include
+            layout="@layout/my_page_buttons"
             android:layout_height="130dp"
-            android:background="@drawable/button_shape"
-            android:gravity="bottom|center_horizontal"
-            android:paddingBottom="20dp"
-            android:layout_marginRight="20dp"
-            android:text="3
-            Review"
-            android:textSize="20dp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <Button
-            android:id="@+id/savedButton"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:background="@drawable/button_shape"
-            android:gravity="bottom|center_horizontal"
-            android:paddingBottom="20dp"
-            android:text="10
-            Saved"
-            android:textSize="20dp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="130dp"/>
+
     </LinearLayout>
 
     <LinearLayout
