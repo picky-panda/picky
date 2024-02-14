@@ -1,171 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/backgroundLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:orientation="vertical"
     tools:context=".MyPageFragment">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    >
 
     <LinearLayout
-        android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/profileLayout">
+        android:orientation="vertical">
 
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"></View>
-
-        <TextView
-            android:id="@+id/myPageTextView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity=""
-            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"></View>
+
+            <TextView
+                android:id="@+id/myPageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity=""
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="My Page"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <ImageButton
+                android:id="@+id/settingButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/baseline_settings_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
             android:gravity="center"
-            android:text="My Page"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/settingButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="end"
-            android:backgroundTint="@color/transparent"
-            android:src="@drawable/baseline_settings_24" />
-    </LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePicImageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/panda_profile_pic" />
 
-    <LinearLayout
-        android:id="@+id/profileLayout"
-        android:layout_width="match_parent"
-        android:layout_height="198dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleLayout"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLinearLayout">
+            <TextView
+                android:id="@+id/idTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="devstone"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilePicImageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/panda_profile_pic" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/idTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="devstone"
-            android:textColor="@color/black"
-            android:textSize="25dp" />
+        <LinearLayout
+            android:id="@+id/buttonLinearLayout"
+            android:layout_width="489dp"
+            android:layout_height="134dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/myPageExampleButton"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_shape"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="20dp"
+                android:text="Register"
+                android:textSize="18dp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-    <LinearLayout
-        android:id="@+id/buttonLinearLayout"
-        android:layout_width="489dp"
-        android:layout_height="134dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+            <Button
+                android:id="@+id/reviewButton"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_shape"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="20dp"
+                android:text="Review"
+                android:textSize="18dp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileLayout"
-        app:layout_constraintBottom_toTopOf="@+id/evaluateTitleLayout">
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-       <include
-           layout="@layout/my_page_buttons"
-           android:layout_height="130dp"
-           android:layout_width="130dp"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="10dp"/>
-        <include
-            layout="@layout/my_page_buttons"
-            android:layout_height="130dp"
-            android:layout_width="130dp"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="10dp"/>
-        <include
-            layout="@layout/my_page_buttons"
-            android:layout_height="130dp"
-            android:layout_width="130dp"/>
+            <Button
+                android:id="@+id/savedButton"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_shape"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="20dp"
+                android:text="Saved"
+                android:textSize="18dp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/evaluateTitleLayout"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLinearLayout"
-        app:layout_constraintBottom_toTopOf="@id/recentlyEvaluatedItemLayout">
-
-        <TextView
-            android:id="@+id/recentlyEvaluatedTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_gravity="center"
-            android:text="Recently Evaluated"
-            android:textColor="@color/black"
-            android:textSize="25dp" />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/moreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
-            android:backgroundTint="@color/transparent"
-            android:text="more"
-            android:textColor="@color/lightPurple"
-            android:layout_gravity="center"
-            android:textSize="17dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/recentlyEvaluatedItemLayout"
-        android:layout_width="match_parent"
-        android:layout_height="440dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/evaluateTitleLayout">
-
-        <include
-            android:id="@+id/firstItem"
-            layout="@layout/recently_evaluated_item"
+        <LinearLayout
+            android:id="@+id/evaluateTitleLayout"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" />
+            android:layout_height="70dp"
+            android:orientation="horizontal">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            <TextView
+                android:id="@+id/recentlyEvaluatedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="Recently Evaluated"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
 
-        <include
-            android:id="@+id/secondItem"
-            layout="@layout/recently_evaluated_item"
+            <View
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/moreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="50dp"
+                android:backgroundTint="@color/transparent"
+                android:text="more"
+                android:textColor="@color/lightPurple"
+                android:textSize="17dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/recentlyEvaluatedItemLayout"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" />
+            android:layout_height="480dp"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/firstItem"
+                layout="@layout/recently_evaluated_item"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include
+                android:id="@+id/secondItem"
+                layout="@layout/recently_evaluated_item"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+        </LinearLayout>
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</LinearLayout>
