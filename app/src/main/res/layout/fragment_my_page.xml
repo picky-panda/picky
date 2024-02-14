@@ -175,7 +175,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
             tools:itemCount="3"
-            tools:listitem="@layout/recently_evaluated_item"
+            tools:listitem="@layout/items"
             />
     </LinearLayout>
 </ScrollView>

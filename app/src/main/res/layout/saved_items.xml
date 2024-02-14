@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +13,7 @@
     android:paddingVertical="10dp">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/savedGoToDetailImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_arrow_forward_ios_24"
@@ -20,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/restaurantThumbnailImageView"
+        android:id="@+id/savedRestaurantThumbnailImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/baseline_account_circle_24"
@@ -29,18 +30,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/restaurantNameTextView"
+        android:id="@+id/savedRestaurantNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="이름"
         android:textColor="@color/black"
         android:textSize="15dp"
-        app:layout_constraintLeft_toRightOf="@id/restaurantThumbnailImageView"
+        app:layout_constraintLeft_toRightOf="@id/savedRestaurantThumbnailImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/addressTextView"
+        android:id="@+id/savedAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -48,11 +49,11 @@
         android:text="주소"
         android:textColor="@color/black"
         android:textSize="13dp"
-        app:layout_constraintLeft_toRightOf="@id/restaurantThumbnailImageView"
-        app:layout_constraintTop_toBottomOf="@id/restaurantNameTextView" />
+        app:layout_constraintLeft_toRightOf="@id/savedRestaurantThumbnailImageView"
+        app:layout_constraintTop_toBottomOf="@id/savedRestaurantNameTextView" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/savedOptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -67,8 +68,17 @@
         android:textColor="@color/lightPurple"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/restaurantThumbnailImageView"
-        app:layout_constraintTop_toBottomOf="@id/addressTextView" />
+        app:layout_constraintLeft_toRightOf="@id/savedRestaurantThumbnailImageView"
+        app:layout_constraintTop_toBottomOf="@id/savedAddressTextView" />
 
-
+    <CheckBox
+        android:id="@+id/savedCheckBox"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bookmark_checkbox_selector"
+        android:button="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savedGoToDetailImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
