@@ -78,6 +78,7 @@
             android:layout_width="489dp"
             android:layout_height="134dp"
             android:gravity="center"
+            android:layout_gravity="center"
             android:orientation="horizontal"
             >
             <Button
@@ -168,33 +169,14 @@
                 android:textSize="17dp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/recentlyEvaluatedItemLayout"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="480dp"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/firstItem"
-                layout="@layout/recently_evaluated_item"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <include
-                android:id="@+id/secondItem"
-                layout="@layout/recently_evaluated_item"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:itemCount="3"
+            tools:listitem="@layout/recently_evaluated_item"
+            />
     </LinearLayout>
 </ScrollView>
 </LinearLayout>
