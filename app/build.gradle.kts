@@ -57,4 +57,9 @@ dependencies {
     //google map
     implementation("com.google.android.gms:play-services-maps:17.0.0")
     implementation("com.google.android.gms:play-services-location:17.0.0")
+
+    //home view 세부정보
+    implementation("androidx.cardview:cardview:1.0.0")
+
+
 }
