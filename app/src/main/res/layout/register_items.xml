@@ -13,7 +13,7 @@
     android:paddingVertical="10dp">
 
     <ImageView
-        android:id="@+id/GoToSavedDetailImageView"
+        android:id="@+id/goToRegisterDetailImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_arrow_forward_ios_24"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/savedRestaurantThumbnailImageView"
+        android:id="@+id/registerRestaurantThumbnailImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/baseline_account_circle_24"
@@ -30,18 +30,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/savedRestaurantNameTextView"
+        android:id="@+id/registerRestaurantNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="이름"
         android:textColor="@color/black"
         android:textSize="15dp"
-        app:layout_constraintLeft_toRightOf="@id/savedRestaurantThumbnailImageView"
+        app:layout_constraintLeft_toRightOf="@id/registerRestaurantThumbnailImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/savedAddressTextView"
+        android:id="@+id/registerAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -49,11 +49,11 @@
         android:text="주소"
         android:textColor="@color/black"
         android:textSize="13dp"
-        app:layout_constraintLeft_toRightOf="@id/savedRestaurantThumbnailImageView"
-        app:layout_constraintTop_toBottomOf="@id/savedRestaurantNameTextView" />
+        app:layout_constraintLeft_toRightOf="@id/registerRestaurantThumbnailImageView"
+        app:layout_constraintTop_toBottomOf="@id/registerRestaurantNameTextView" />
 
     <TextView
-        android:id="@+id/savedOptionTextView"
+        android:id="@+id/OptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -68,17 +68,17 @@
         android:textColor="@color/lightPurple"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/savedRestaurantThumbnailImageView"
-        app:layout_constraintTop_toBottomOf="@id/savedAddressTextView" />
+        app:layout_constraintLeft_toRightOf="@id/registerRestaurantThumbnailImageView"
+        app:layout_constraintTop_toBottomOf="@id/registerAddressTextView" />
 
-    <CheckBox
-        android:id="@+id/savedCheckBox"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bookmark_checkbox_selector"
-        android:button="@color/transparent"
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GoToSavedDetailImageView" />
+        app:layout_constraintEnd_toEndOf="@+id/goToRegisterDetailImageView"
+        app:layout_constraintStart_toStartOf="@+id/goToRegisterDetailImageView"
+        app:srcCompat="@drawable/baseline_edit_24"
+        android:backgroundTint="@color/transparent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
