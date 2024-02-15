@@ -11,8 +11,6 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     >
 
     <LinearLayout
@@ -82,7 +80,7 @@
             android:orientation="horizontal"
             >
             <Button
-                android:id="@+id/myPageExampleButton"
+                android:id="@+id/registerButton"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:background="@drawable/button_shape"
