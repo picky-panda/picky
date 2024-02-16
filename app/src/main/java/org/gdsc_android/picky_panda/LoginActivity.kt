@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
 
         //googleSignInOptions 설정
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
-            .requestServerAuthCode("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
+            .requestIdToken("444216138764-fntlo29l0ljcrhbp0rbvoagsojahdju2.apps.googleusercontent.com")
+            .requestServerAuthCode("444216138764-fntlo29l0ljcrhbp0rbvoagsojahdju2.apps.googleusercontent.com")
             .build()
         
         //googleSignInClient. 로그인 창 표시
