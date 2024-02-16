@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
 
         //googleSignInOptions 설정
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("444216138764-t11tjjmsic0fm29pub8vt81pduvfk8a1.apps.googleusercontent.com")
-            .requestServerAuthCode("444216138764-t11tjjmsic0fm29pub8vt81pduvfk8a1.apps.googleusercontent.com")
+            .requestIdToken("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
+            .requestServerAuthCode("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
             .build()
         
         //googleSignInClient. 로그인 창 표시
@@ -54,12 +54,18 @@ class LoginActivity : AppCompatActivity() {
             // Access Token 가져오기
             //getGoogleAccessToken(account.serverAuthCode!!)
 
-            //로그인 성공 후 메인 화면으로 이동
-            val fragment = HomeFragment()
+            //로그인 성공 후 홈 화면으로 이동
+            /*val fragment = HomeFragment()
             supportFragmentManager.beginTransaction()
                 .replace(R.id.homeFragment, fragment)
                 .commit()
+            finish()*/
+
+            //main activity로 이동
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
+
         } catch (e: ApiException){
             //google 로그인 실패했을 때 작업 추가
             Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
