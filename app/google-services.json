@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "444216138764",
+    "project_id": "abiding-base-414212",
+    "storage_bucket": "abiding-base-414212.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444216138764:android:a606a5ca34c460c350e229",
+        "android_client_info": {
+          "package_name": "org.gdsc_android.picky_panda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444216138764-t11tjjmsic0fm29pub8vt81pduvfk8a1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.gdsc_android.picky_panda",
+            "certificate_hash": "788e9adf12a857fb2de2998b294ba94d8c8d1b67"
+          }
+        },
+        {
+          "client_id": "444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR7g0XkyFI8ppQZORCnEZEKLGt5QPvPWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444216138764-fntlo29l0ljcrhbp0rbvoagsojahdju2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
