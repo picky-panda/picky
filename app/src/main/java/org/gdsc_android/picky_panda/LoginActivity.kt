@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
 
         } catch (e: ApiException){
             //google 로그인 실패했을 때 작업 추가
-            Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
             Log.e("GoogleSignIn", "로그인 실패: ${e.statusCode}")
         }
     }
