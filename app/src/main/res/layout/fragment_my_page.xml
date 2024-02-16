@@ -1,20 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/backgroundLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     tools:context=".MyPageFragment">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
-    <TextView
-        android:id="@+id/addText"
-        android:layout_width="wrap_content"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="It's mine!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"></View>
+
+            <TextView
+                android:id="@+id/myPageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity=""
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="My Page"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <ImageButton
+                android:id="@+id/settingButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/baseline_settings_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePicImageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/panda_profile_pic" />
+
+            <TextView
+                android:id="@+id/idTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="devstone"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonLinearLayout"
+            android:layout_width="489dp"
+            android:layout_height="134dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/myPageExampleButton"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_shape"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="20dp"
+                android:text="Register"
+                android:textSize="18dp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+
+            <Button
+                android:id="@+id/reviewButton"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_shape"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="20dp"
+                android:text="Review"
+                android:textSize="18dp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+
+            <Button
+                android:id="@+id/savedButton"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_shape"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="20dp"
+                android:text="Saved"
+                android:textSize="18dp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/evaluateTitleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/recentlyEvaluatedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="Recently Evaluated"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/moreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="50dp"
+                android:backgroundTint="@color/transparent"
+                android:text="more"
+                android:textColor="@color/lightPurple"
+                android:textSize="17dp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:itemCount="3"
+            tools:listitem="@layout/items"
+            />
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
