@@ -13,7 +13,7 @@
     android:paddingVertical="10dp">
 
     <ImageView
-        android:id="@+id/goToDetailImageView"
+        android:id="@+id/goToResentlyEvaluatedDetailImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_arrow_forward_ios_24"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/restaurantThumbnailImageView"
+        android:id="@+id/resentlyEvaluatedRestaurantThumbnailImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/baseline_account_circle_24"
@@ -30,18 +30,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/restaurantNameTextView"
+        android:id="@+id/resentlyEvaluatedRestaurantNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="이름"
         android:textColor="@color/black"
         android:textSize="15dp"
-        app:layout_constraintLeft_toRightOf="@id/restaurantThumbnailImageView"
+        app:layout_constraintLeft_toRightOf="@id/resentlyEvaluatedRestaurantThumbnailImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/addressTextView"
+        android:id="@+id/resentlyEvaluatedAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -49,11 +49,11 @@
         android:text="주소"
         android:textColor="@color/black"
         android:textSize="13dp"
-        app:layout_constraintLeft_toRightOf="@id/restaurantThumbnailImageView"
-        app:layout_constraintTop_toBottomOf="@id/restaurantNameTextView" />
+        app:layout_constraintLeft_toRightOf="@id/resentlyEvaluatedRestaurantThumbnailImageView"
+        app:layout_constraintTop_toBottomOf="@id/resentlyEvaluatedRestaurantNameTextView" />
 
     <TextView
-        android:id="@+id/OptionTextView"
+        android:id="@+id/resentlyEvaluatedOptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -68,8 +68,8 @@
         android:textColor="@color/lightPurple"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/restaurantThumbnailImageView"
-        app:layout_constraintTop_toBottomOf="@id/addressTextView" />
+        app:layout_constraintLeft_toRightOf="@id/resentlyEvaluatedRestaurantThumbnailImageView"
+        app:layout_constraintTop_toBottomOf="@id/resentlyEvaluatedAddressTextView" />
 
     <CheckBox
         android:id="@+id/agreeCheckBox"
@@ -80,5 +80,5 @@
         android:button="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goToDetailImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/goToResentlyEvaluatedDetailImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
