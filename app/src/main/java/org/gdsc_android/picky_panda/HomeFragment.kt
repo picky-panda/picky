@@ -19,6 +19,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
    ): View? {
        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
        return binding.root
+
+
    }
 
     //fragment의 view가 소멸되는 시점에 호출
