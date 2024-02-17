@@ -3,6 +3,7 @@ package org.gdsc_android.picky_panda
 import android.content.Context
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,13 +32,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onCreateView(
        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
    ): View? {
-       _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-       val rootView = binding.root
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        val rootView = binding.root
 
-        val mapFragment = childFragmentManager.findFragmentById(binding.homeFragment.id) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        val mapFragment =
+            childFragmentManager.findFragmentById(binding.homeFragment.id) as? SupportMapFragment
+        val mapView = childFragmentManager.findFragmentById(R.id.mapViewFragment) as? SupportMapFragment
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this)
+        } else {
+            //fragment를 찾지 못한 경우에 대한 예외 처리
+            Log.e("MapFragment", "Map Fragment를 찾을 수 없습니다.")
+        }
         return rootView
-   }
+    }
+
 
     //fragment의 view가 소멸되는 시점에 호출
     override fun onDestroyView() {
@@ -49,13 +58,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
         googleMap.setOnMarkerClickListener(this)
-        //구글맵 설정 및 초기화 작업 수행
-        currentMarker = setupMarker(LatLngEntity(37.5574,126.9269)) //default 홍대입구역
-        currentMarker?.showInfoWindow()
 
-        //사용자가 주소를 입력하면 해당 위치로 지도를 이동시키는 로직 구현
-        val address = "서울특별시 마포구 양화로"
-        moveMapToAddress(address, requireContext())
+        //구글맵 설정 및 초기화 작업 수행
+        if (::mapView.isInitialized){
+            googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL  // 지도 유형 설정
+
+            currentMarker = setupMarker(LatLngEntity(37.5574,126.9269)) //default 홍대입구역
+            currentMarker?.showInfoWindow()
+
+            //사용자가 주소를 입력하면 해당 위치로 지도를 이동시키는 로직 구현
+            val address = "서울특별시 마포구 양화로"
+            moveMapToAddress(address, requireContext())
+        } else {
+            Toast.makeText(context, "초기화 작업 오류.", Toast.LENGTH_SHORT).show()
+        }
+        
     }
 
     //주소를 입력받아 지도를 해당 위치로 이동시키는 함수
