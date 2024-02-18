@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.google.android.gms.auth.api.credentials.IdToken
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -23,13 +24,16 @@ class LoginActivity : AppCompatActivity() {
 
         //googleSignInOptions 설정
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("444216138764-fntlo29l0ljcrhbp0rbvoagsojahdju2.apps.googleusercontent.com")
-            .requestServerAuthCode("444216138764-fntlo29l0ljcrhbp0rbvoagsojahdju2.apps.googleusercontent.com")
+            .requestIdToken("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
+            .requestServerAuthCode("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
             .build()
+
+
+
         
         //googleSignInClient. 로그인 창 표시
         val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
-         
+
         binding.googleSignInButton.setOnClickListener{
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, RequestCode_SIGN_IN)
@@ -50,9 +54,13 @@ class LoginActivity : AppCompatActivity() {
         try{
             //google 로그인 성공 시
             val account = completedTask.getResult(ApiException::class.java)!!
+            val idToken = account.idToken
 
-            // Access Token 가져오기
-            //getGoogleAccessToken(account.serverAuthCode!!)
+            // ID Token 출력
+            Log.d("IDToken", "ID Token: $idToken")
+
+            /*// Access Token 가져오기
+            getGoogleAccessToken(account.serverAuthCode!!)*/
 
             //로그인 성공 후 홈 화면으로 이동
             /*val fragment = HomeFragment()
@@ -73,3 +81,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
+
+   /* private fun getGoogleAccessToken(serverAuthCode: String) {
+
+    }*/
