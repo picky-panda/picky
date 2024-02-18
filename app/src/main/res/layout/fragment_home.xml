@@ -7,16 +7,27 @@
     tools:context=".HomeFragment"
     android:id="@+id/homeFragment">
 
-    <androidx.appcompat.widget.SearchView
+
+    <AutoCompleteTextView
         android:id="@+id/searchView"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toStartOf="@id/searchButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="주소 검색" />
+        android:layout_marginEnd="8dp"/>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintStart_toEndOf="@id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="36dp"
+        />
 
     <HorizontalScrollView
         android:id="@+id/optionScroll"
@@ -24,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:layout_constraintTop_toBottomOf="@id/searchView"
-        app:layout_constraintBottom_toTopOf="@id/mapViewFragment">
+        app:layout_constraintBottom_toTopOf="@id/mapContainer">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,28 +72,24 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Halal" />
-
-
-
         </LinearLayout>
     </HorizontalScrollView>
 
     <fragment
-        android:id="@+id/mapViewFragment"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/mapContainer"
+        android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="408dp"
         android:layout_height="570dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optionScroll"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/optionScroll" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        app:layout_constraintBottom_toBottomOf="@+id/mapViewFragment"
+        app:layout_constraintBottom_toBottomOf="@+id/mapContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
