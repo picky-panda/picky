@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Picky_panda"
         tools:targetApi="31">
-
+        <!--<meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/bookmark_button_selector" />-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />

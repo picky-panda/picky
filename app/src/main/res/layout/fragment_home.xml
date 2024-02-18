@@ -27,6 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="36dp"
+        android:backgroundTint="@color/BlueLight"
         />
 
     <HorizontalScrollView
@@ -45,9 +46,10 @@
                 android:id="@+id/GlutenFreeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:text="GlutenFree" />
+                android:text="GlutenFree"
+                android:background="@drawable/button_selector"/>
 
             <Button
                 android:id="@+id/VeganButton"
@@ -55,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Vegan" />
+                android:text="Vegan"
+                android:background="@drawable/button_selector"/>
 
             <Button
                 android:id="@+id/LactoseButton"
@@ -63,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Lactose Intolerance" />
+                android:text="Lactose Intolerance"
+                android:background="@drawable/button_selector"/>
 
             <Button
                 android:id="@+id/HalalButton"
@@ -71,7 +75,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Halal" />
+                android:text="Halal"
+                android:background="@drawable/button_selector"/>
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -97,17 +102,6 @@
             android:layout_width="match_parent"
             android:layout_height="230dp"
             app:cardBackgroundColor="@color/white">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/bookmarkButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@drawable/baseline_bookmark_border_24"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="340dp"
-                app:backgroundTint="@color/white"
-                />
 
             <fragment
                 android:id="@+id/storeDetailsContainer"
