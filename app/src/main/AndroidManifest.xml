@@ -23,9 +23,6 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".StroreDetailFragment"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>

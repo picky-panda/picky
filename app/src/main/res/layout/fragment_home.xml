@@ -109,56 +109,12 @@
                 app:backgroundTint="@color/white"
                 />
 
-            <LinearLayout
+            <fragment
+                android:id="@+id/storeDetailsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8.8dp"
-                android:layout_marginBottom="40dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/img_salady_logo" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8.8dp"
-                android:layout_marginBottom="40dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sallady"
-                    android:textSize="25sp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginStart="100dp"
-                    />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room 183102, Yanghwa-ro, Mapo-gu, Seoul"
-                android:textSize="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="100dp"
                 />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_vegan"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="100dp"
-                />
-
-
-            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 

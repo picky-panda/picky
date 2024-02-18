@@ -54,7 +54,43 @@ class HomeFragment : Fragment() {
             googleMapFragment?.onSearchQuery(query)
         }
 
+        /*// Gluten Free 버튼 클릭 이벤트 처리
+        binding.GlutenFreeButton.setOnClickListener {
+            // Vegan 버튼이 클릭되었을 때 처리할 코드 추가
+            val googleMapFragment = GoogleMapFragment.newInstance()
+            googleMapFragment.showStoresOnMap("Gluten Free") // 가게 유형을 전달
+        }
+
+        // Vegan 버튼 클릭 이벤트 처리
+        binding.VeganButton.setOnClickListener {
+            val googleMapFragment = GoogleMapFragment.newInstance()
+            googleMapFragment.showStoresOnMap("Vegan") // 가게 유형을 전달
+        }
+
+        // Lactose Intolerance 버튼 클릭 이벤트 처리
+        binding.LactoseButton.setOnClickListener {
+            val googleMapFragment = GoogleMapFragment.newInstance()
+            googleMapFragment.showStoresOnMap("Lactose Intolerance") // 가게 유형을 전달
+        }
+
+        // Halal 버튼 클릭 이벤트 처리
+        binding.HalalButton.setOnClickListener {
+            val googleMapFragment = GoogleMapFragment.newInstance()
+            googleMapFragment.showStoresOnMap("Halal") // 가게 유형을 전달
+        }*/
+
+        binding.VeganButton.setOnClickListener { showStoresOnMap("Vegan") }
+        binding.GlutenFreeButton.setOnClickListener { showStoresOnMap("Glueten Free") }
+        binding.LactoseButton.setOnClickListener { showStoresOnMap("Lactose Intolerance") }
+        binding.HalalButton.setOnClickListener { showStoresOnMap("Halal") }
+
         return binding.root
+    }
+
+    private fun showStoresOnMap(storeType: String) {
+        val googleMapFragment = GoogleMapFragment.newInstance()
+        val stores = // fetch or provide a list of stores based on storeType
+            googleMapFragment.showStoresOnMap(stores)
     }
 
     //fragment의 view가 소멸되는 시점에 호출

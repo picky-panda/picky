@@ -1,5 +1,6 @@
 package org.gdsc_android.picky_panda
 
+import android.app.AlertDialog
 import android.location.Geocoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.net.PlacesClient
 import org.gdsc_android.picky_panda.databinding.FragmentGoogleMapBinding
@@ -37,7 +41,7 @@ class GoogleMapFragment : Fragment() {
             googleMap = map
 
             // GoogleMap 초기화 및 설정
-            configureMapSeettings()
+            configureMapSettings()
 
             // 마커 추가
             val markerOptions = MarkerOptions()
@@ -46,17 +50,18 @@ class GoogleMapFragment : Fragment() {
             val marker = googleMap?.addMarker(markerOptions)
 
             // 마커 클릭 리스너 등록
-           /* googleMap?.setOnMarkerClickListener { clickedMarker ->
+            googleMap?.setOnMarkerClickListener { clickedMarker ->
                 // 마커 클릭 시 동작
                 // 여기에서 마커에 대한 상세 정보를 표시하는 등의 동작을 구현할 수 있습니다.
                 true
-            }*/
+            }
         }
 
         return view
     }
 
-    private fun configureMapSeettings() {
+
+    private fun configureMapSettings() {
         // GoogleMap 설정을 추가로 진행
         googleMap?.uiSettings?.isZoomControlsEnabled = true
         googleMap?.uiSettings?.isMyLocationButtonEnabled = true
@@ -95,13 +100,113 @@ class GoogleMapFragment : Fragment() {
         }
 
 
-       /* // 검색 결과 위치로 지도 이동
+        // 검색 결과 위치로 지도 이동
         val location = LatLng(37.5569, -126.9239)
         googleMap?.moveCamera(CameraUpdateFactory.newLatLng(location))
 
         // 검색 결과 위치에 마커 추가
-        googleMap?.addMarker(MarkerOptions().position(location).title(query))*/
+        googleMap?.addMarker(MarkerOptions().position(location).title(query))
     }
+
+    companion object {
+        fun newInstance(): GoogleMapFragment {
+            return GoogleMapFragment()
+        }
+    }
+
+    // Vegan 가게를 표시하는 함수
+    /*fun showStoresOnMap(storeType: String) {
+        // 구글맵 관련 설정 및 초기화 등의 코드 추가
+
+        // storeType에 따라 마커를 표시하는 코드 추가
+        if (storeType == "Vegan") {
+            // 마커를 추가하는 코드
+            // 예시: 구글맵에 마커를 추가하는 코드 (실제로는 데이터베이스 또는 다른 소스에서 위치 정보를 가져와야 함)
+            val markerOptions = MarkerOptions()
+                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
+                .title("Vegan Store")
+            val marker = googleMap?.addMarker(markerOptions)
+
+            // 마커 클릭 이벤트 처리
+            marker?.let { nonNullMarker ->
+                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
+                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
+                    showStoreDetailsFragment("Vegan Store Details")
+                    true
+                }
+            }
+        } else if (storeType == "Gluten Free") {
+            val markerOptions = MarkerOptions()
+                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
+                .title("Vegan Store")
+            val marker = googleMap?.addMarker(markerOptions)
+
+            marker?.let { nonNullMarker ->
+                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
+                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
+                    showStoreDetailsFragment("Gluten Free Store Details")
+                    true
+                }
+            }
+        } else if (storeType == "Lactose Intolerance") {
+            val markerOptions = MarkerOptions()
+                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
+                .title("Vegan Store")
+            val marker = googleMap?.addMarker(markerOptions)
+
+            marker?.let { nonNullMarker ->
+                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
+                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
+                    showStoreDetailsFragment("Lactose Intolerance Store Details")
+                    true
+                }
+            }
+        } else if (storeType == "Halal") {
+            val markerOptions = MarkerOptions()
+                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
+                .title("Vegan Store")
+            val marker = googleMap?.addMarker(markerOptions)
+
+            marker?.let { nonNullMarker ->
+                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
+                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
+                    showStoreDetailsFragment("Halal Store Details")
+                    true
+                }
+            }
+        }*/
+
+    // 가게 목록을 표시하는 함수
+    fun showStoresOnMap(storeList: List<Store>) {
+        // 구글맵 관련 설정 및 초기화 등의 코드 추가
+
+        // 가게 목록을 순회하며 마커를 추가하는 코드
+        for (store in storeList) {
+            val markerOptions = MarkerOptions()
+                .position(LatLng(store.latitude, store.longitude))
+                .title(store.name)
+
+            val marker = googleMap?.addMarker(markerOptions)
+
+            // 확장 함수를 사용하여 마커 클릭 이벤트 처리
+            marker?.setOnMarkerClickListener { clickedMarker ->
+                // 마커 클릭 이벤트 처리 코드
+                openStoreDetailsFragment(store.name)
+                true
+            }
+        }
+
+    }
+
+    // 상세 정보 Fragment를 열어주는 함수
+    private fun openStoreDetailsFragment(storeName: String) {
+        val fragment = StoreDetailsFragment.newInstance(storeName)
+        val transaction = fragmentManager?.beginTransaction()
+        transaction?.replace(R.id.storeDetailsContainer, fragment)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -124,3 +229,11 @@ class GoogleMapFragment : Fragment() {
     }
 
 }
+
+private fun Marker?.setOnMarkerClickListener(listener: ((Marker) -> Boolean)?) {
+    this?.setOnMarkerClickListener(listener)
+}
+
+
+
+
