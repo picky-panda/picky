@@ -101,7 +101,7 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:text="5 people Agree"
-
+        android:background="@drawable/button_selector"
         />
 
     <Button
@@ -110,6 +110,7 @@
         android:layout_height="wrap_content"
         android:text="3 people Disagree"
         android:layout_marginStart="20dp"
+        android:background="@drawable/button_selector"
         />
 
     </LinearLayout>
