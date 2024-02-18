@@ -45,26 +45,17 @@
         app:backgroundTint="@color/white"
         />
 
-    <ImageView
-        android:id="@+id/restaurLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="110dp"
-        android:src="@drawable/img_salady_logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:text="Sallady"
         android:textSize="30dp"
-        app:layout_constraintStart_toEndOf="@id/restaurLogo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="50dp"
+        tools:layout_editor_absoluteX="150dp" />
 
     <ImageView
         android:id="@+id/veganImageView"
@@ -95,6 +86,7 @@
                 android:src="@drawable/img_blanck_box"/>
 
             <TextView
+                android:id="@+id/representitiveReviewText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -111,7 +103,7 @@
         android:text="Agree"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="50dp"/>
 
     <Button
@@ -121,89 +113,54 @@
         android:text="Disagree"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        app:layout_constraintTop_toBottomOf="@id/agreeButton">
 
         <LinearLayout
+            android:id="@+id/reviewTitleTextView"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Review"
-                android:textSize="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="30dp" />
+                android:textSize="30dp" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:src="@android:drawable/ic_input_add"
-                android:layout_marginStart="200dp"
-                app:backgroundTint="@color/white"
-                />
+                app:backgroundTint="@color/white" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="220dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:text="I had a ‘Greens Only’ salad and it was for vegan. Also it was gluten free."
-                android:layout_gravity="center_horizontal"/>
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
-
-            <TextView
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:text="‘Creamy Jalapeno’ sauce was vegan sauce and it was very good :)"
-                android:layout_gravity="center_horizontal"/>
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
-
-            <TextView
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:text="‘Creamy Jalapeno’ sauce was vegan sauce and it was very good :)"
-                android:layout_gravity="center_horizontal"/>
-
-        </LinearLayout>
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/fragment_review_list"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
