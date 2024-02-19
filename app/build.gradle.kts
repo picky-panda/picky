@@ -75,6 +75,9 @@ dependencies {
     //home view 세부정보
     implementation("androidx.cardview:cardview:1.0.0")
 
+    //chip button
+    implementation("com.google.android.material:material:1.11.0")
+
 
 
 }

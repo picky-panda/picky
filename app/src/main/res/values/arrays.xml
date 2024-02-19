@@ -9,4 +9,13 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="placeCategory">
+        <item>Restaurant</item>
+        <item>Cafe</item>
+        <item>Bar</item>
+        <item>Pub</item>
+        <!-- 추가적인 옵션들 -->
+    </string-array>
+
 </resources>
