@@ -46,13 +46,11 @@
         android:id="@+id/optionsTheyProvideTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
         android:text="Options they provide (required)*"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/OptionsCategoryMultiAutoCompleteTextView"
-        tools:layout_editor_absoluteX="28dp" />
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/optionChipGroup"
+        tools:layout_editor_absoluteX="20dp" />
 
     <Button
         android:id="@+id/submitButton"
@@ -66,7 +64,8 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/editButton"
@@ -109,29 +108,48 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="Place Category (required)*"
-        app:layout_constraintBottom_toTopOf="@+id/placeCategoryMultiAutoCompleteTextView" />
+        app:layout_constraintBottom_toTopOf="@+id/placeCategorySpinner" />
 
-    <MultiAutoCompleteTextView
-        android:id="@+id/placeCategoryMultiAutoCompleteTextView"
+    <Spinner
+        android:id="@+id/placeCategorySpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:completionThreshold="1"
-        android:hint="Restaurant"
         app:layout_constraintBottom_toTopOf="@+id/optionsTheyProvideTextView" />
 
-    <MultiAutoCompleteTextView
-        android:id="@+id/OptionsCategoryMultiAutoCompleteTextView"
-        android:layout_width="match_parent"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/optionChipGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:completionThreshold="1"
-        android:hint="Vegan"
-        app:layout_constraintBottom_toTopOf="@+id/whatKindOfFoodTextView" />
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toTopOf="@+id/whatKindOfFoodTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:selectionRequired="false"
+        app:singleSelection="false"> <!-- 선택이 필수적인지 여부, 필요에 따라 설정 -->
+
+        <!-- 다중 선택 가능한 Chip 버튼들 -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/veganChipOption"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vegan"
+            android:textColor="@color/chip_button_text_selector"
+            app:chipBackgroundColor="@color/chip_button_selector"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/glutenFreeChipOption"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipBackgroundColor="@color/chip_button_selector"
+            android:textColor="@color/chip_button_text_selector"
+            android:text="Gluten Free" />
+
+    </com.google.android.material.chip.ChipGroup>
 
     <TextView
         android:id="@+id/whatKindOfFoodTextView"
