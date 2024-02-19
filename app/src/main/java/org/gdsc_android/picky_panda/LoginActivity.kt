@@ -51,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
             //google 로그인 성공 시
             val account = completedTask.getResult(ApiException::class.java)!!
 
+
+
             // Access Token 가져오기
             //getGoogleAccessToken(account.serverAuthCode!!)
 
