@@ -8,60 +8,93 @@
     android:id="@+id/homeFragment">
 
 
-    <androidx.appcompat.widget.SearchView
+    <AutoCompleteTextView
         android:id="@+id/searchView"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toStartOf="@id/searchButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp"
-        app:queryHint="주소 검색" />
+        android:layout_marginEnd="8dp"/>
 
     <Button
-        android:id="@+id/GlutenFreeButton"
-        android:layout_width="121dp"
-        android:layout_height="38dp"
-        android:text="GlutenFree"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchView"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="30dp"/>
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintStart_toEndOf="@id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="@color/BlueLight"
+        />
 
-    <Button
-        android:id="@+id/VeganButton"
-        android:layout_width="90dp"
-        android:layout_height="38dp"
-        android:text="Vegan"
-        app:layout_constraintStart_toEndOf="@id/GlutenFreeButton"
+    <HorizontalScrollView
+        android:id="@+id/optionScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         app:layout_constraintTop_toBottomOf="@id/searchView"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"/>
+        app:layout_constraintBottom_toTopOf="@id/mapContainer">
 
-    <Button
-        android:id="@+id/LactoseButton"
-        android:layout_width="140dp"
-        android:layout_height="38dp"
-        android:text="Lactose Intolerance"
-        app:layout_constraintStart_toEndOf="@id/VeganButton"
-        app:layout_constraintTop_toBottomOf="@id/searchView"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+            <Button
+                android:id="@+id/GlutenFreeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:text="GlutenFree"
+                android:background="@drawable/button_selector"/>
+
+            <Button
+                android:id="@+id/VeganButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Vegan"
+                android:background="@drawable/button_selector"/>
+
+            <Button
+                android:id="@+id/LactoseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Lactose Intolerance"
+                android:background="@drawable/button_selector"/>
+
+            <Button
+                android:id="@+id/HalalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Halal"
+                android:background="@drawable/button_selector"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <fragment
+        android:id="@+id/mapContainer"
+        android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="408dp"
         android:layout_height="570dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VeganButton" />
+        app:layout_constraintTop_toBottomOf="@+id/optionScroll" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        app:layout_constraintBottom_toBottomOf="@+id/mapView"
+        app:layout_constraintBottom_toBottomOf="@+id/mapContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -70,67 +103,12 @@
             android:layout_height="230dp"
             app:cardBackgroundColor="@color/white">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/bookmarkButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@drawable/baseline_bookmark_border_24"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="340dp"
-                app:backgroundTint="@color/white"
-                />
-
-            <LinearLayout
+            <fragment
+                android:id="@+id/storeDetailsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8.8dp"
-                android:layout_marginBottom="40dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/img_salady_logo" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8.8dp"
-                android:layout_marginBottom="40dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sallady"
-                    android:textSize="25sp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginStart="100dp"
-                    />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room 183102, Yanghwa-ro, Mapo-gu, Seoul"
-                android:textSize="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="100dp"
                 />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_vegan"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="100dp"
-                />
-
-
-            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
