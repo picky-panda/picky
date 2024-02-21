@@ -10,12 +10,17 @@ import retrofit2.http.Query
 
 interface ServiceApi {
 
-    @Headers("Content-Type: application/json")
+    //@Headers("Content-Type: application/json")
 
     @POST("/auth/google/login") //로그인
     fun login(
         @Body request: RequestLoginData
     ) : Call<ResponseLoginData>
+
+    @GET("/restaurant/:restaurantId") //가게 조회
+    fun inquireStore(
+        @Path ("restaurantId") restaurantId: Int
+    ): Call<ResponseInquireStoreData>
 
     @POST("/restaurant/save/:restaurantId") //가게 저장
     fun saveStore(
@@ -23,11 +28,6 @@ interface ServiceApi {
         @Path ("restaurantId") restaurantId: Int,
         @Body request: RequestSaveStoreData
     ) : Call<ResponseSaveStoreData>
-
-    @GET("/restaurant/:restaurantId") //가게 조회
-    fun inquireStore(
-        @Path ("restaurantId") restaurantId: Int
-    ): Call<ResponseInquireStoreData>
 
     @POST("/restaurant/:descriptionId") //가게 description 동의
     fun describeStore(
@@ -43,8 +43,16 @@ interface ServiceApi {
         @Query ("southWestY") southWestY: Double
     ): Call<ResponseInquireMapData>
 
+    @POST("/review/:restaurantId") //리뷰 등록
+    fun registerReview(
+        @Path ("restaurantId") restaurantId: Int,
+        @Body request: RequestRegisterReviewData
+    ): Call<ResponseRegisterReviewDta>
 
-
+    @GET("/review/:restaurantId") //리뷰 조회
+    fun inquireReview(
+        @Path ("restaurantId") restaurantId: Int
+    ): Call<ResponseInquireReviewData>
 
 
 
