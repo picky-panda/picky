@@ -1,6 +1,6 @@
 package org.gdsc_android.picky_panda.data
 
-data class ResponseSaveStoreData(
+data class ResponseRegisterStoreData(
     val code: Int,
     val message: String
 )

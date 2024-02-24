@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddDetailFragment">
-
-
     <TextView
         android:id="@+id/addDetailTitleTextView"
         android:layout_width="wrap_content"
@@ -39,7 +37,7 @@
         android:layout_marginBottom="10dp"
         android:text="Place Details"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/placeDetailFixedTextView1"
+        app:layout_constraintBottom_toTopOf="@+id/placeNAmeFixedTextView"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -75,11 +73,11 @@
         android:text="edit"
         android:textColor="@color/lightPurple"
         android:textSize="13dp"
-        app:layout_constraintBottom_toTopOf="@+id/placeDetailFixedTextView1"
+        app:layout_constraintBottom_toTopOf="@+id/placeNAmeFixedTextView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/placeDetailFixedTextView1"
+        android:id="@+id/placeNAmeFixedTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -87,10 +85,11 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_rounded_corner_rectangle"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/placeDetailFixedTextView2" />
+        android:textSize="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/placeAddressFixedTextView" />
 
     <TextView
-        android:id="@+id/placeDetailFixedTextView2"
+        android:id="@+id/placeAddressFixedTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -98,6 +97,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_rounded_corner_rectangle"
         android:text="TextView"
+        android:textSize="13dp"
         app:layout_constraintBottom_toTopOf="@+id/placeCategoryTextView" />
 
     <TextView
@@ -108,6 +108,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="Place Category (required)*"
+        android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/placeCategorySpinner" />
 
     <Spinner
@@ -158,6 +159,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:textSize="15dp"
         android:text="What kind of food offered that option?"
         app:layout_constraintBottom_toTopOf="@+id/whatKindOfFoodEditTextText"
         app:layout_constraintEnd_toEndOf="parent"
