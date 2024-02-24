@@ -11,11 +11,28 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.children
+import com.google.android.gms.common.api.Response
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.Call
+import okhttp3.ResponseBody
 import org.gdsc_android.picky_panda.AddDetailFragment
+import org.gdsc_android.picky_panda.data.GeocodingResponse
+import org.gdsc_android.picky_panda.data.GetGeocodingResult
+import org.gdsc_android.picky_panda.data.RegisterData
+import org.gdsc_android.picky_panda.data.RestaurantRepository
 import org.gdsc_android.picky_panda.databinding.FragmentAddDetailBinding
+import retrofit2.Callback
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 class AddDetailFragment : Fragment() {
     private lateinit var binding: FragmentAddDetailBinding
@@ -64,21 +81,52 @@ class AddDetailFragment : Fragment() {
         }
 
         binding.submitButton.setOnClickListener {
-            showToast("Submitted!")
+            CoroutineScope(Dispatchers.Main).launch {
+                if (validateInputs()) {
+                    val address = binding.placeAddressFixedTextView.text.toString()
+                    val geocodingResult = getGeocodingResult(address)
+                    val latitude = geocodingResult.latitude
+                    val longitude = geocodingResult.longtitude
 
-            // 현재 ChipGroup에서 선택된 Chip들의 ID들을 selectedChipIds라는 리스트에 담음
-            val selectedChipIds = binding.optionChipGroup.checkedChipIds
-            //해당 ID를 사용해서 Chip을 찾아 selectedChip에 저장
-            for (chipId in selectedChipIds) {
-                val selectedChip = binding.root.findViewById<Chip>(chipId)
+                    // 입력된 정보를 바탕으로 RegisterData 객체(식당 정보)를 생성
+                    val restaurant = RegisterData(
+                        placeName = binding.placeNAmeFixedTextView.text.toString(),
+                        address = address,
+                        latitude = latitude,
+                        longitude = longitude,
+                        category = binding.placeCategorySpinner.selectedItem.toString(),
+                        options = selectedChipIds.joinToString(","),
+                        description = binding.whatKindOfFoodEditTextText.text.toString()
+                    )
+
+                    // RestaurantRepository의 addRestaurant 메서드를 호출하여 서버에 식당 정보를 전송
+                    val call = RestaurantRepository.addRestaurant(restaurant)
+
+                    // enqueue 메서드를 호출하여 서버에 비동기 요청 보냄
+                    call.enqueue(object :Callback<ResponseBody> {
+                        // 서버로부터 응답을 받으면 이 메서드가 호출
+                        override fun onResponse(
+                            call: retrofit2.Call<ResponseBody>,
+                            response: retrofit2.Response<ResponseBody>
+                        ) {
+                            if (response.isSuccessful) {
+                                showToast("Submitted!")
+                                (activity as MainActivity).replaceFragment(AddFragment())
+                            }
+                            else {
+                                showToast("Failed to submit!")
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<ResponseBody>, t: Throwable) {
+                            showToast("Fail to connect!")
+                        }
+                    })
+
+
+                }
             }
-            //사용자가 입력한 음식의 종류를 whatKindOfFoodEntered에 저장
-            val whatKindOfFoodEntered = binding.whatKindOfFoodEditTextText.text.toString()
-            //스피너에서 선택된 카테고리를 selectedCategory에 저장
-            val selectedCategory = binding.placeCategorySpinner.selectedItem as String
 
-            // AddFragment로 이동
-            (activity as MainActivity).replaceFragment(AddFragment())
         }
 
         binding.editButton.setOnClickListener {
@@ -104,4 +152,39 @@ class AddDetailFragment : Fragment() {
             showToast("Please select at least one option.")
         }
     }
+    private fun validateInputs(): Boolean {
+        if (binding.placeCategorySpinner.selectedItem == null) {
+            showToast("Please select a category.")
+            return false
+        }
+        if (selectedChipIds.isEmpty()) {
+            showToast("Please select at least one option.")
+            return false
+        }
+        return true
+    }
+    suspend fun getGeocodingResult(address: String): GetGeocodingResult {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://maps.googleapis.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(GeocodingService::class.java)
+
+        // 코루틴을 사용하여 비동기 호출을 수행합니다.
+        val response = service.getGeocodeAsync(address, "GOOGLE_MAPS_API_KEY").await()
+        val result = response.results.firstOrNull()
+
+        val latitude = result?.geometry?.location?.lat ?: 0.0
+        val longitude = result?.geometry?.location?.lng ?: 0.0
+
+        return GetGeocodingResult(latitude, longitude)
+    }
+
+    interface GeocodingService {
+        @GET("maps/api/geocode/json")
+        // Call 객체 대신 Deferred 객체를 반환합니다.
+        fun getGeocodeAsync(@Query("address") address: String, @Query("key") key: String): Deferred<GeocodingResponse>
+    }
+
 }
