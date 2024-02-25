@@ -22,24 +22,27 @@ interface ServiceApi {
 
     @GET("/restaurant/:restaurantId") //가게 조회
     fun inquireStore(
+        @Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int
     ): Call<ResponseInquireStoreData>
 
     @POST("/restaurant/save/:restaurantId") //가게 저장
     fun saveStore(
-        //@Headers("Authorization") token: String,
+        @Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int,
         @Body request: RequestSaveStoreData
     ) : Call<ResponseSaveStoreData>
 
     @POST("/restaurant/:descriptionId") //가게 description 동의
     fun describeStore(
+        @Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int,
         @Body request: RequestDescribeStoreData
     ): Call<ResponseDescribeStoreData>
 
     @GET("/restaurant/list") //가게 지도 조회
     fun inquireMap(
+        @Headers("Authorization") authorization: String,
         @Query ("northEastX") northEastX: Double,
         @Query ("northEastY") northEastY: Double,
         @Query ("southWestX") southWestX: Double,
@@ -48,12 +51,14 @@ interface ServiceApi {
 
     @POST("/review/:restaurantId") //리뷰 등록
     fun registerReview(
+        @Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int,
         @Body request: RequestRegisterReviewData
     ): Call<ResponseRegisterReviewDta>
 
     @GET("/review/:restaurantId") //리뷰 조회
     fun inquireReview(
+        @Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int
     ): Call<ResponseInquireReviewData>
 
