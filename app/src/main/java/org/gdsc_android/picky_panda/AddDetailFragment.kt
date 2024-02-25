@@ -1,5 +1,6 @@
 package org.gdsc_android.picky_panda
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -212,6 +213,11 @@ class AddDetailFragment : Fragment() {
             .build()
 
         val service = retrofit.create(ServiceApi::class.java)
+
+        // SharedPreferences에서 토큰을 가져온다.
+        val sharedPreferences = requireActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE)
+        val accessToken = sharedPreferences.getString("accessToken", "")
+
         return service.registerStore(data,"Bearer $accessToken")
     }
 
