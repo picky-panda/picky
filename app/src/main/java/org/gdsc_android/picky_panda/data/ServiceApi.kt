@@ -1,5 +1,6 @@
 package org.gdsc_android.picky_panda.data
 
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -8,6 +9,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.DELETE
+import retrofit2.http.Header
 
 interface ServiceApi {
 
@@ -56,8 +58,9 @@ interface ServiceApi {
     ): Call<ResponseInquireReviewData>
 
     @POST("/restaurant") //가게 등록
-    fun registerStore(
-        @Body request: RequestRegisterStoreData
+    suspend fun registerStore(
+        @Body request: RequestRegisterStoreData,
+        @Header("Authorization") authorization: String
     ): Call<ResponseRegisterStoreData>
 
     @GET("/profile/restaurant?section=") //마이페이지 가게 목록
@@ -65,7 +68,7 @@ interface ServiceApi {
         @Query ("section") section: String
     ):Call<ResponseMySectionStoreListData>
 
-    @POST("/restaurant/description/{restaurantId}") //가게 설명 등록
+    @POST("/restaurant/description/:restaurantId") //가게 설명 등록
     fun storeDescription(
         @Path("restaurantId") restaurantId: Int,
         @Body request: RequestRegisterDescriptionData
@@ -80,4 +83,10 @@ interface ServiceApi {
     @GET("/profile") //마이페이지 조회
     fun myStoreList(
     ): Call<ResponseMyStoreListData>
+
+    @GET("maps/api/geocode/json")
+    fun getGeocodeAsync(
+        @Query("address") address: String,
+        @Query("key") apiKey: String
+    ): Deferred<GeocodingResponse>
 }

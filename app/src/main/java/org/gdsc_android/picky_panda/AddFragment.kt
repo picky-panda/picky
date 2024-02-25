@@ -47,6 +47,14 @@ class AddFragment : Fragment() {
         binding.nextButton.setOnClickListener {
             val placeName = binding.placeNameEditTextText.text.toString()
             val editTextTextPostalAddress = binding.editTextTextPostalAddress.text.toString()
+            val bundle = Bundle().apply {
+                putString("placeName", placeName)
+                putString("postalAddress", editTextTextPostalAddress)
+            }
+
+            val addDetailFragment = AddDetailFragment().apply {
+                arguments = bundle
+            }
             (activity as MainActivity).replaceFragment(AddDetailFragment())
         }
     }
