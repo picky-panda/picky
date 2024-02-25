@@ -114,68 +114,6 @@ class GoogleMapFragment : Fragment() {
         }
     }
 
-    // Vegan 가게를 표시하는 함수
-    /*fun showStoresOnMap(storeType: String) {
-        // 구글맵 관련 설정 및 초기화 등의 코드 추가
-
-        // storeType에 따라 마커를 표시하는 코드 추가
-        if (storeType == "Vegan") {
-            // 마커를 추가하는 코드
-            // 예시: 구글맵에 마커를 추가하는 코드 (실제로는 데이터베이스 또는 다른 소스에서 위치 정보를 가져와야 함)
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            // 마커 클릭 이벤트 처리
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Vegan Store Details")
-                    true
-                }
-            }
-        } else if (storeType == "Gluten Free") {
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Gluten Free Store Details")
-                    true
-                }
-            }
-        } else if (storeType == "Lactose Intolerance") {
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Lactose Intolerance Store Details")
-                    true
-                }
-            }
-        } else if (storeType == "Halal") {
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Halal Store Details")
-                    true
-                }
-            }
-        }*/
-
     // 가게 목록을 표시하는 함수
     fun showStoresOnMap(storeList: List<Store>) {
         // 구글맵 관련 설정 및 초기화 등의 코드 추가

@@ -2,11 +2,11 @@ package org.gdsc_android.picky_panda.data
 
 data class ResponseInquireStoreData(
     val code: Int,
-    val message: String
+    val message: String,
+    val data: Data?
 ){
     data class Data(
         val isSaved: Boolean,
-        val image: String,
         val placeName: String,
         val latitude: Double,
         val longitude: Double,
