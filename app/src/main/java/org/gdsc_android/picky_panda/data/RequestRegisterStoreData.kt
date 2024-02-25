@@ -5,7 +5,7 @@ data class RequestRegisterStoreData(
     val address: String,
     val latitude: Double,
     val longitude: Double,
-    //val categort:ENUM,
+    val category:CategoryClass,
     val options: String,
     val description:String
 )
