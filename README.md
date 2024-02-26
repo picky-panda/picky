@@ -14,7 +14,7 @@ In South Korea, there's a significant lack of awareness and accommodation for di
 ```
 ## Picky-Panda-Mobile
 ### Configuration
-//데모영상
+<iframe width="832" height="468" src="https://www.youtube.com/embed/f0VjOea5icI" title="Picky-Panda - GDSC Solution Challenge 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ### Stacks
 #### Environment
 ![Android Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)
