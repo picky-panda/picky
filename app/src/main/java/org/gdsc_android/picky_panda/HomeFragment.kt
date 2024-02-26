@@ -124,7 +124,7 @@ class HomeFragment : Fragment() {
                 }
             })
     }
-
+}
 
             private fun showStoresOnMap(storeType: String) {
                 val googleMapFragment = GoogleMapFragment.newInstance()
@@ -138,7 +138,3 @@ class HomeFragment : Fragment() {
                     _binding = null
                 }
             }
-
-
-
-

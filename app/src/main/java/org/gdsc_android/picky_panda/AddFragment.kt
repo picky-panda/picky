@@ -24,7 +24,7 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 각 EditText의 입력 여부에 따라 NextButton 활성화/비활성화 설정
+        // Set the NextButton to be enabled/disabled depending on whether each EditText has been filled in
         binding.placeNameEditTextText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -43,7 +43,7 @@ class AddFragment : Fragment() {
                 checkInputsAndEnableButton()
             }
         })
-        //nextButton 누르면 정보 리스트에 담고 AddDetailFragment로 이동
+        //NextButton is pressed, store the information in a list and move to the AddDetailFragment
         binding.nextButton.setOnClickListener {
             val placeName = binding.placeNameEditTextText.text.toString()
             val editTextTextPostalAddress = binding.editTextTextPostalAddress.text.toString()
@@ -60,7 +60,7 @@ class AddFragment : Fragment() {
     }
 
     private fun checkInputsAndEnableButton() {
-        // 두 EditText의 입력 여부에 따라 Button 활성화/비활성화 설정
+        // Set the Button to be enabled/disabled depending on whether the two EditTexts have been filled in
         val isPlaceNameNotEmpty = binding.placeNameEditTextText.text.isNotBlank()
         val isPostalAddressNotEmpty = binding.editTextTextPostalAddress.text.isNotBlank()
 
