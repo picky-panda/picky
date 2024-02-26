@@ -20,7 +20,7 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private val RequestCode_SIGN_IN = 3253 //임의의 값
+    private val RequestCode_SIGN_IN = 3253 //any num
     private val api = ServiceCreator.apiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,13 +29,13 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //googleSignInOptions 설정
+        //googleSignInOptions setting
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
             .requestServerAuthCode("444216138764-uhhqtqb9fjtn7i02mmrdpsjkg7g9q998.apps.googleusercontent.com")
             .build()
         
-        //googleSignInClient. 로그인 창 표시
+        //googleSignInClient. make login popup
         val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
          
         binding.googleSignInButton.setOnClickListener{
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
     override  fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
         
-        //google 로그인 결과 처리
+        // processing google login result
         if (requestCode == RequestCode_SIGN_IN){
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
@@ -56,41 +56,39 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleSignInResult(completedTask: com.google.android.gms.tasks.Task<GoogleSignInAccount>) {
         try{
-            //google 로그인 성공 시
+            //if login success
             val account = completedTask.getResult(ApiException::class.java)!!
             val idToken = account.idToken
 
-            // ID Token 출력
             Log.d("IDToken", "ID Token: $idToken")
 
-            // Retrofit을 사용하여 서버에 로그인 요청
+            // request login to the server using Retrofit
             val requestLoginData = idToken?.let { RequestLoginData(it) }
             val call: Call<ResponseLoginData> = api.login(requestLoginData!!)
 
-            //비동기적으로 실행
+            //Run asynchronously
             call.enqueue(object : retrofit2.Callback<ResponseLoginData> {
                 override fun onResponse(
                     call: Call<ResponseLoginData>,
                     response: retrofit2.Response<ResponseLoginData>
                 ) {
-                    //응답을 처리하는 코드
+                    //process responses
                     if (response.isSuccessful){
                         val responseLoginData = response.body()
 
-                        //서버 응답 코드 확인
+                        // verifying Server Response Code
                         val code = responseLoginData?.code ?: -1
 
                         when (code) {
                             201 -> {
-                                //성공적으로 로그인한 경우
+                                //if login success
                                 val data = responseLoginData?.data
 
-                                //응답 데이터 사용 예시
                                 val socialId = data?.socialId
                                 val accessToken = data?.accessToken
                                 val refreshToken = data?.refreshToken
 
-                                // 사용자 정보 저장
+                                // save user Information
                                 val sharedPreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE)
                                 val editor = sharedPreferences.edit()
                                 editor.putString("socialId", socialId)
@@ -98,44 +96,40 @@ class LoginActivity : AppCompatActivity() {
                                 editor.putString("refreshToken", refreshToken)
                                 editor.apply()
 
-                                //main activity로 이동
+                                // move to main activity
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }
                             400 -> {
-                                //request data가 잘못된 경우
-                                val message = responseLoginData?.message ?: "잘못된 데이터 형식입니다"
+                                val message = responseLoginData?.message ?: "Invalid data type"
                                 Toast.makeText(this@LoginActivity, "Login failed: $message", Toast.LENGTH_SHORT).show()
                             }
                             401 -> {
-                                //잘못된 accessToken이 넘어온 경우
-                                val message = responseLoginData?.message ?: "외부 API 요청에 잘못된 데이터가 전달됐습니다"
+                                val message = responseLoginData?.message ?: "Invalid data passed to external API request"
                                 Toast.makeText(this@LoginActivity, "Login failed: $message", Toast.LENGTH_SHORT).show()
                             }
                             else -> {
-                                //기타 오류인 경우
                                 val message = responseLoginData?.message ?: "Unknown error"
                                 Toast.makeText(this@LoginActivity, "Login failed: $message", Toast.LENGTH_SHORT).show()
                             }
                         }
                     } else {
-                        // 서버 응답이 실패한 경우
                         Toast.makeText(this@LoginActivity, "Server error: ${response.code()}", Toast.LENGTH_SHORT).show()
 
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
-                    //실패 시 처리하는 코드 작성
-                    Log.e("ApiError", "로그인 실패")
+
+                    Log.e("ApiError", "Login failed")
                 }
             })
 
         } catch (e: ApiException){
-            //google 로그인 실패했을 때 작업 추가
+
             Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
-            Log.e("GoogleSignIn", "로그인 실패: ${e.statusCode}")
+            Log.e("GoogleSignIn", "Login failed: ${e.statusCode}")
         }
     }
 }

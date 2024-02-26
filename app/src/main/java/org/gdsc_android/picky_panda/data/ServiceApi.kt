@@ -4,61 +4,61 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.DELETE
 import retrofit2.http.Header
+import retrofit2.http.Headers
 
 interface ServiceApi {
 
     //@Headers("Content-Type: application/json")
 
-    @POST("/auth/google/login") //로그인
+    @POST("/auth/google/login") //Login
     fun login(
         @Body request: RequestLoginData
     ) : Call<ResponseLoginData>
 
-    @GET("/restaurant/:restaurantId") //가게 조회
+    @GET("/restaurant/:restaurantId") //Inquire Store
     fun inquireStore(
-        @Headers("Authorization") authorization: String,
+        //@Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int
     ): Call<ResponseInquireStoreData>
 
-    @POST("/restaurant/save/:restaurantId") //가게 저장
+    @POST("/restaurant/save/:restaurantId") //Save Store
     fun saveStore(
-        @Headers("Authorization") authorization: String,
+        //@Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int,
         @Body request: RequestSaveStoreData
     ) : Call<ResponseSaveStoreData>
 
-    @POST("/restaurant/:descriptionId") //가게 description 동의
+    @POST("/restaurant/:descriptionId") //Store Describtion
     fun describeStore(
-        @Headers("Authorization") authorization: String,
+        //@Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int,
         @Body request: RequestDescribeStoreData
     ): Call<ResponseDescribeStoreData>
 
-    @GET("/restaurant/list") //가게 지도 조회
+    @GET("/restaurant/list") //Inquire Map
     fun inquireMap(
-        @Headers("Authorization") authorization: String,
-        @Query ("northEastX") northEastX: Double,
-        @Query ("northEastY") northEastY: Double,
-        @Query ("southWestX") southWestX: Double,
-        @Query ("southWestY") southWestY: Double
+        @retrofit2.http.Header("Authorization") authorization: String,
+        @Query("northEastX") northEastX: Double,
+        @Query("northEastY") northEastY: Double,
+        @Query("southWestX") southWestX: Double,
+        @Query("southWestY") southWestY: Double
     ): Call<ResponseInquireMapData>
 
-    @POST("/review/:restaurantId") //리뷰 등록
+    @POST("/review/:restaurantId") //Register Review
     fun registerReview(
-        @Headers("Authorization") authorization: String,
+        //@Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int,
         @Body request: RequestRegisterReviewData
     ): Call<ResponseRegisterReviewDta>
 
-    @GET("/review/:restaurantId") //리뷰 조회
+    @GET("/review/:restaurantId") //Inquire Review
     fun inquireReview(
-        @Headers("Authorization") authorization: String,
+        //@Headers("Authorization") authorization: String,
         @Path ("restaurantId") restaurantId: Int
     ): Call<ResponseInquireReviewData>
 

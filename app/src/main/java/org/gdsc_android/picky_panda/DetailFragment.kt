@@ -27,21 +27,21 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 뷰바인딩을 통한 버튼 클릭 이벤트 처리
+        // click event using view binding
         binding.addReviewButton.setOnClickListener{
             showBottomSheetDialog()
         }
 
         binding.bookmarkButton.setOnClickListener {
-            // 버튼의 상태 변경
+            // change the status of the button
             isBookmarked = !isBookmarked
             updateBookmarkButtonState()
-            // 기타 클릭 이벤트 처리 코드
+            // other click events
         }
     }
 
     private fun updateBookmarkButtonState() {
-            // 버튼의 상태에 따라 background 변경
+            // change the background if clicked
             val backgroundResId = if (isBookmarked) {
                 R.drawable.baseline_bookmark_24
             } else {
