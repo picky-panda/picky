@@ -31,22 +31,22 @@ class reviewBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Bottom Sheet 다이얼로그의 내용에 대한 초기화 및 이벤트 처리
+        // Initialize the contents of the Bottom Sheet dialog and handle events
         val reviewEditText = view.findViewById<EditText>(R.id.reviewEditText)
         val submitButton = view.findViewById<Button>(R.id.submitButton)
         val closeButton = view.findViewById<Button>(R.id.closeButton)
 
         submitButton.setOnClickListener {
-            // 리뷰 제출 버튼 클릭 이벤트 처리
+            // Click the Submit Review button to handle the event
             val reviewText = reviewEditText.text.toString()
-            // 여기서 리뷰를 사용할 수 있습니다.
-            // 예: 저장, 네트워크 전송 등의 작업 수행
-            dismiss() // 다이얼로그 닫기
+            // can write the review here
+            // performing tasks such as saving, network transfer, etc
+            dismiss()
         }
 
         closeButton.setOnClickListener {
-            // 닫기 버튼 클릭 이벤트 처리
-            dismiss() // 다이얼로그 닫기
+            // Close button click event processing
+            dismiss()
         }
     }
 
