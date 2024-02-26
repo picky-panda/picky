@@ -21,7 +21,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // RegisterFragment에서 ImageButton 클릭 시 MypageFragment로 돌아감
+        // move to MypageFragment
         binding.fromRegisterToMyPageButton.setOnClickListener {
             (activity as MainActivity).replaceFragment(MyPageFragment())
         }

@@ -116,6 +116,7 @@ class HomeFragment : Fragment() {
             })
     }
 
+
     private fun selectedCategory(category: String) {
         selectedCategory = category
         // marker of selected category
@@ -135,3 +136,6 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
+
+}
+

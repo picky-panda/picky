@@ -87,6 +87,7 @@ interface ServiceApi {
 
     @GET("/profile") //마이페이지 조회
     fun myStoreList(
+        @Header("Authorization") authorization: String
     ): Call<ResponseMyStoreListData>
 
     @GET("maps/api/geocode/json")
