@@ -1,5 +1,6 @@
 package org.gdsc_android.picky_panda
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,14 +12,8 @@ import android.widget.Toast
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
-import okhttp3.ResponseBody
 import org.gdsc_android.picky_panda.data.CategoryClass
-import org.gdsc_android.picky_panda.data.GeocodingResponse
 import org.gdsc_android.picky_panda.data.GetGeocodingResult
 import org.gdsc_android.picky_panda.data.RequestRegisterStoreData
 import org.gdsc_android.picky_panda.data.ResponseRegisterStoreData
@@ -29,10 +24,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
 
 class AddDetailFragment : Fragment() {
     private lateinit var binding: FragmentAddDetailBinding
@@ -200,10 +191,10 @@ class AddDetailFragment : Fragment() {
         if (result == null || result.geometry?.location == null) {
             throw Exception("No location found for the address.")
         }
-            val latitude = result.geometry.location.lat
-            val longitude = result.geometry.location.lng
+        val latitude = result.geometry.location.lat
+        val longitude = result.geometry.location.lng
 
-            return GetGeocodingResult(latitude, longitude)
+        return GetGeocodingResult(latitude, longitude)
     }
     private suspend fun saveStoreDataToServer(data: RequestRegisterStoreData): Call<ResponseRegisterStoreData> {
         val retrofit = Retrofit.Builder()
@@ -212,8 +203,10 @@ class AddDetailFragment : Fragment() {
             .build()
 
         val service = retrofit.create(ServiceApi::class.java)
+        // SharedPreferences
+        val sharedPreferences = requireActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE)
+        val accessToken = sharedPreferences.getString("accessToken", "")
+
         return service.registerStore(data,"Bearer $accessToken")
     }
-
-
 }

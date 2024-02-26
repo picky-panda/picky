@@ -71,24 +71,22 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/buttonLinearLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            >
+            android:layout_gravity="center">
+
             <Button
                 android:id="@+id/registerButton"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:background="@drawable/button_shape"
-                android:gravity="bottom|center_horizontal"
+                app:backgroundTint="@null"
+                android:gravity="center|bottom"
                 android:paddingBottom="20dp"
                 android:text="Register"
                 android:textSize="18dp"
-                app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,13 +101,12 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:background="@drawable/button_shape"
-                android:gravity="bottom|center_horizontal"
+                app:backgroundTint="@null"
+                android:gravity="center|bottom"
                 android:paddingBottom="20dp"
                 android:text="Review"
                 android:textSize="18dp"
-                app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -122,17 +119,53 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:background="@drawable/button_shape"
-                android:gravity="bottom|center_horizontal"
+                android:gravity="center|bottom"
                 android:paddingBottom="20dp"
                 android:text="Saved"
                 android:textSize="18dp"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/reviewCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/reviewButton"
+                app:layout_constraintEnd_toEndOf="@+id/reviewButton"
+                app:layout_constraintStart_toStartOf="@+id/reviewButton"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/descriptionCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/registerButton"
+                app:layout_constraintEnd_toEndOf="@+id/registerButton"
+                app:layout_constraintStart_toStartOf="@+id/registerButton"
+                app:layout_constraintTop_toTopOf="@+id/registerButton" />
+
+            <TextView
+                android:id="@+id/savedRestaurantCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/savedButton"
+                app:layout_constraintEnd_toEndOf="@+id/savedButton"
+                app:layout_constraintStart_toStartOf="@+id/savedButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/evaluateTitleLayout"
@@ -168,11 +201,12 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecentlyEvaluatedRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            tools:itemCount="3"
+            tools:itemCount="2"
             tools:listitem="@layout/items"
             />
     </LinearLayout>
