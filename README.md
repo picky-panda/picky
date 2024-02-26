@@ -14,7 +14,6 @@ In South Korea, there's a significant lack of awareness and accommodation for di
 ```
 ## Picky-Panda-Mobile
 ### Configuration
-![Uploading Screenshot 2024-02-26 at 13.59.04.png…]()
 
 [![Uploading 2024-02-26_13_42_35_video.gif…]()](https://youtu.be/f0VjOea5icI?si=y6pHmpnRlGd8-VUi)
 
