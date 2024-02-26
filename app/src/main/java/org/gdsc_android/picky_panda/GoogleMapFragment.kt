@@ -1,6 +1,7 @@
 package org.gdsc_android.picky_panda
 
 import android.app.AlertDialog
+import android.content.Context
 import android.location.Geocoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -28,6 +29,7 @@ class GoogleMapFragment : Fragment() {
     private lateinit var mapView: MapView
     private var googleMap: GoogleMap? = null
     /*private lateinit var placesClient: PlacesClient*/
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +45,21 @@ class GoogleMapFragment : Fragment() {
             // GoogleMap 초기화 및 설정
             configureMapSettings()
 
+            // 지도 이동 이벤트 리스너 등록
+            map.setOnCameraIdleListener {
+                // 지도가 이동이 멈추면 호출되는 콜백
+                val visibleRegion = map.projection.visibleRegion
+                val northEast = visibleRegion.latLngBounds.northeast
+                val southWest = visibleRegion.latLngBounds.southwest
+
+                // SharedPreferences에서 토큰을 가져온다.
+                val sharedPreferences = requireActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE)
+                val accessToken = sharedPreferences.getString("accessToken", "")
+                val homeFragment = HomeFragment()
+
+                homeFragment.inquireStoresOnMap(northEast, southWest, "Bearer $accessToken")
+            }
+
             // 마커 추가
             val markerOptions = MarkerOptions()
                 .position(LatLng(37.5569, -126.9239)) // 마커의 위치
@@ -55,6 +72,8 @@ class GoogleMapFragment : Fragment() {
                 // 여기에서 마커에 대한 상세 정보를 표시하는 등의 동작을 구현할 수 있습니다.
                 true
             }
+
+
         }
 
         return view
@@ -113,68 +132,6 @@ class GoogleMapFragment : Fragment() {
             return GoogleMapFragment()
         }
     }
-
-    // Vegan 가게를 표시하는 함수
-    /*fun showStoresOnMap(storeType: String) {
-        // 구글맵 관련 설정 및 초기화 등의 코드 추가
-
-        // storeType에 따라 마커를 표시하는 코드 추가
-        if (storeType == "Vegan") {
-            // 마커를 추가하는 코드
-            // 예시: 구글맵에 마커를 추가하는 코드 (실제로는 데이터베이스 또는 다른 소스에서 위치 정보를 가져와야 함)
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            // 마커 클릭 이벤트 처리
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Vegan Store Details")
-                    true
-                }
-            }
-        } else if (storeType == "Gluten Free") {
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Gluten Free Store Details")
-                    true
-                }
-            }
-        } else if (storeType == "Lactose Intolerance") {
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Lactose Intolerance Store Details")
-                    true
-                }
-            }
-        } else if (storeType == "Halal") {
-            val markerOptions = MarkerOptions()
-                .position(LatLng(37.7749, -122.4194)) // 가게의 위치 좌표
-                .title("Vegan Store")
-            val marker = googleMap?.addMarker(markerOptions)
-
-            marker?.let { nonNullMarker ->
-                nonNullMarker.setOnMarkerClickListener { clickedMarker ->
-                    // 마커를 클릭했을 때 상세 정보 다이얼로그 또는 화면을 표시하는 코드 추가
-                    showStoreDetailsFragment("Halal Store Details")
-                    true
-                }
-            }
-        }*/
 
     // 가게 목록을 표시하는 함수
     fun showStoresOnMap(storeList: List<Store>) {

@@ -203,7 +203,9 @@ class AddDetailFragment : Fragment() {
             .build()
 
         val service = retrofit.create(ServiceApi::class.java)
+
         // SharedPreferences
+
         val sharedPreferences = requireActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE)
         val accessToken = sharedPreferences.getString("accessToken", "")
 
